@@ -47,7 +47,7 @@ const Login = () => {
   });
 
   return (
-    <div className="flex items-center justify-center h-screen bg-slate-600">
+    <div className="flex items-center justify-center h-screen bg-slate-800">
       <FrontComponent
         pgHeading={pgHeading}
         response={response}

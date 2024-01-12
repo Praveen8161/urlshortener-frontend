@@ -1,46 +1,46 @@
 import { useState } from "react";
-import GetEmail from "../components/GetEmail"
+import GetEmail from "../components/GetEmail";
 import { API, AppLink } from "../helpers/API";
 
 const Forgot = () => {
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState("");
   // URL for validate the email
-  const URL = `${API}/forgot` ;
+  const URL = `${API}/forgot`;
 
-  function handleClick(user){
-    if(!user.email){
-      setResponse({error: 'Fields are required'});
-      return
+  function handleClick(user) {
+    if (!user.email) {
+      setResponse({ error: "Fields are required" });
+      return;
     }
 
     // React URL for new password update
     const mailUser = {
       email: user.email,
-      link: `${AppLink}/reset`
-    }
+      link: `${AppLink}/reset`,
+    };
 
     // validate email and send email
     fetch(URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(mailUser)
+      body: JSON.stringify(mailUser),
     })
-    .then((data) => data.json())
-    .then((data) => setResponse(data))
-    .catch((err) => console.log(err))
+      .then((data) => data.json())
+      .then((data) => setResponse(data))
+      .catch((err) => console.log(err));
   }
 
   return (
-    <div className="flex items-center justify-center h-screen bg-slate-600">
-    <GetEmail
-    handleClick = {handleClick}
-    response = {response}
-    setResponse = {setResponse}
-    />
-  </div>
-  )
-}
+    <div className="flex items-center justify-center h-screen bg-slate-800">
+      <GetEmail
+        handleClick={handleClick}
+        response={response}
+        setResponse={setResponse}
+      />
+    </div>
+  );
+};
 
-export default Forgot
+export default Forgot;
