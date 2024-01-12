@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FrontComponent from "../components/FrontComponent";
 import { API } from "../helpers/API";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +38,13 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user_token");
+    if (userData) {
+      navigate("/dashboard");
+    }
+  });
 
   return (
     <div className="flex items-center justify-center h-screen bg-slate-600">
